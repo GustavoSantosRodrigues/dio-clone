@@ -1,16 +1,57 @@
-# React + Vite
+# DIO Clone – React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto desenvolvido com **React + Vite**, recriando as telas de **Cadastro e Login** inspiradas no layout da DIO, utilizando boas práticas de componentização, responsividade e consumo de API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## React Compiler
+- **React** – Biblioteca principal para construção da interface
+- **Vite** – Bundler rápido para desenvolvimento
+- **Tailwind CSS** – Estilização utilitária e responsiva
+- **Axios** – Consumo de API
+- **React Hook Form** – Gerenciamento de formulários
+- **Yup** – Validação de formulários
+- **React Router DOM** – Controle de rotas
+- **JSON Server** – API fake para simular autenticação
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+---
 
-## Expanding the ESLint configuration
+## 📐 Layout e Estrutura
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Layout responsivo baseado em **grid de 12 colunas**
+- Container customizado seguindo cálculo de layout (pixel perfect)
+- Header reutilizável com container global
+- Separação clara entre:
+  - `components`
+  - `assets`
+  - `services`
+  - `pages` (login / cadastro)
+
+---
+
+## 🧱 Estrutura de Pastas
+
+```bash
+src/
+├── assets/
+│   └── images/
+│       ├── logo-dio.png
+│       ├── email.png
+│       ├── password.png
+│       └── index.js
+│
+├── components/
+│   └── header/
+│       └── Header.jsx
+│
+├── pages/
+│   ├── Login.jsx
+│   └── Register.jsx
+│
+├── services/
+│   └── api.js
+│
+├── App.jsx
+├── main.jsx
+└── index.css
