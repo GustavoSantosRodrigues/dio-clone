@@ -3,6 +3,8 @@ import { email, password } from '@/assets/images'
 import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { api } from '@/services/api'
+import { useNavigate } from 'react-router-dom'
 
 const schema = yup.object().shape({
     email: yup.string().email('Email inválido').required('Email é obrigatório'),
@@ -10,6 +12,7 @@ const schema = yup.object().shape({
 }).required();
 
 export default function Login() {
+    const navigate = useNavigate()
     const {
         control,
         handleSubmit,
@@ -23,10 +26,21 @@ export default function Login() {
         },
     })
 
-    console.log(isValid, errors)
+    // console.log(isValid, errors)
 
-    const onSubmit = (data) => {
-        console.log(data)
+    const onSubmit = async (data) => {
+        try {
+            const response = await api.get(`/users?email=${data.email}&password=${data.password}`)
+            // console.log('retorno api', response.data)
+            if(response.data.length === 1) {
+                console.log('Usuário encontrado')
+                navigate('/home')
+            } else {
+                alert('Usuário não encontrado, verifique seu email e senha') 
+            }
+        } catch (error) {
+            alert('Erro ao fazer login')
+        }
     }
 
     return (
