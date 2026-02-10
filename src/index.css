@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .container {
+    @apply mx-auto w-full px-4
+           xl:max-w-[947px]
+           2xl:max-w-[1184px];
+  }
+}
