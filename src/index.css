@@ -7,3 +7,8 @@
            2xl:max-w-[1184px];
   }
 }
+
+
+.error-message {
+    @apply text-red-500 mt-1;
+}

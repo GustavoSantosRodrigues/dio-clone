@@ -1,8 +1,34 @@
 
 import { email, password } from '@/assets/images'
+import { useForm, Controller } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
+const schema = yup.object().shape({
+    email: yup.string().email('Email inválido').required('Email é obrigatório'),
+    password: yup.string().min(6, 'Senha deve ter no mínimo 6 caracteres').required('Senha é obrigatória'),
+}).required();
 
 export default function Login() {
+    const {
+        control,
+        handleSubmit,
+        formState: { errors, isValid },
+    } = useForm({
+        resolver: yupResolver(schema),
+        mode: 'all',
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+    })
+
+    console.log(isValid, errors)
+
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+
     return (
         <>
             {/* <Header /> */}
@@ -33,38 +59,60 @@ export default function Login() {
 
                                 <div className="flex items-center gap-3 border-b border-white/30 py-2 mb-4">
                                     <img src={email} alt="" className="h-4" />
-                                    <input
-                                        type="email"
-                                        placeholder="E-mail"
-                                        className="bg-transparent outline-none text-sm w-full"
+                                    <Controller
+                                        name="email"
+                                        control={control}
+                                        render={({ field: { onChange, value } }) => (
+                                            <input
+                                                value={value}
+                                                onChange={onChange}
+                                                type="email"
+                                                error={errors.email}
+                                                placeholder="E-mail"
+                                                className="bg-transparent outline-none text-sm w-full"
+                                            />
+                                        )}
                                     />
                                 </div>
+                                {errors.email && <span className="error-message">{errors.email.message}</span>}
 
-                                {/* Input senha */}
-                                <div className="flex items-center gap-3 border-b border-white/30 py-2 mb-6">
-                                    <img src={password} alt="" className="h-4" />
-                                    <input
-                                        type="password"
-                                        placeholder="Password"
-                                        className="bg-transparent outline-none text-sm w-full"
-                                    />
-                                </div>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    {/* Input senha */}
+                                    <div className="flex items-center gap-3 border-b border-white/30 py-2 mb-6">
+                                        <img src={password} alt="" className="h-4" />
+                                        <Controller
+                                            name="password"
+                                            control={control}
+                                            render={({ field: { onChange, value } }) => (
+                                                <input
+                                                    value={value}
+                                                    onChange={onChange}
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    error={errors?.password}
+                                                    className="bg-transparent outline-none text-sm w-full"
+                                                />
+                                            )}
+                                        />
+                                    </div>
+                                    {errors?.password && <span className="error-message">{errors?.password.message}</span>}
 
-                                {/* Botão */}
-                                <button className="w-full py-3 rounded-full bg-pink-600 hover:bg-pink-700 transition font-semibold mb-6">
-                                    Entrar
-                                </button>
+                                    {/* Botão */}
+                                    <button type="submit" className="disabled:opacity-50  cursor-pointer w-full py-3 rounded-full bg-pink-600 hover:bg-pink-700 transition font-semibold mb-6">
+                                        Entrar
+                                    </button>
 
-                                {/* Links */}
-                                <div className="flex justify-between text-sm">
-                                    <a href="#" className="text-yellow-400 hover:underline">
-                                        Esqueci minha senha
-                                    </a>
+                                    {/* Links */}
+                                    <div className="flex justify-between text-sm">
+                                        <a href="#" className="text-yellow-400 hover:underline">
+                                            Esqueci minha senha
+                                        </a>
 
-                                    <a href="/cadastro" className="text-green-400 hover:underline">
-                                        Criar conta
-                                    </a>
-                                </div>
+                                        <a href="/cadastro" className="text-green-400 hover:underline">
+                                            Criar conta
+                                        </a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
