@@ -119,7 +119,7 @@ export default function Login() {
                                     <ButtonDefault type="submit" title="Entrar" className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
 
                                     {/* Links */}
-                                    <div className="flex justify-between text-sm">
+                                    <div className="flex justify-between text-sm my-3">
                                         <a href="#" className="text-yellow-400 hover:underline">
                                             Esqueci minha senha
                                         </a>

@@ -25,6 +25,12 @@ export default function Header() {
                             Entrar
                         </button>
                     </a>
+
+                    <a href="/register">
+                        <button className="px-4 py-2 rounded-full bg-zinc-700 hover:bg-zinc-600 cursor-pointer">
+                            Cadastrar
+                        </button>
+                    </a>
                 </nav>
 
             </div>

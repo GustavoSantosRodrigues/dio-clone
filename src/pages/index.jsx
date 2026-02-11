@@ -23,7 +23,9 @@ export default function Home() {
               comunidade com os melhores experts.
             </p>
 
-            <ButtonDefault title="Começar agora" className=" cursor-pointer mt-8 px-6 py-3 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
+            <a href="/register">
+              <ButtonDefault title="Começar agora" className=" cursor-pointer mt-8 px-6 py-3 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
+            </a>
           </div>
 
           {/* Imagem */}
