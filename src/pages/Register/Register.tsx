@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { api } from '@/services/api'
 import { useNavigate } from 'react-router-dom'
 
-const schema = yup.object().shape({
+const schema = yup.object({
     name: yup.string().required('Nome é obrigatório'),
     email: yup.string().email('Email inválido').required('Email é obrigatório'),
     password: yup.string().min(6, 'Senha deve ter no mínimo 6 caracteres').required('Senha é obrigatória'),
@@ -14,6 +14,13 @@ const schema = yup.object().shape({
 
 
 type FormData = yup.InferType<typeof schema>
+
+interface user {
+    id: number
+    name: string
+    email: string
+    password: string
+}
 
 export default function Register() {
     const navigate = useNavigate()
@@ -35,7 +42,7 @@ export default function Register() {
 
     const onSubmit = async (data: FormData) => {
         try {
-            const response = await api.get('/users', {
+            const response = await api.get<user[]>('/users', {
                 params: {
                     email: data.email,
                     password: data.password,

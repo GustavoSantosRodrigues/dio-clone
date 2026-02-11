@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import HeaderAuth from '@/components/headerAuth'
+import HeaderAuth from '@/components/HeaderAuth'
 
 export default function AuthLayout() {
   return (

@@ -1,5 +1,6 @@
 import { user, dioLogo } from '@/assets/images'
 import { Search } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function HeaderSearch() {
   return (
@@ -8,9 +9,9 @@ export default function HeaderSearch() {
 
         {/* Logo + busca */}
         <div className="flex items-center gap-6">
-          <a href="/">
+          <Link to="/">
             <img src={dioLogo} alt="DIO" className="h-6" />
-          </a>
+          </Link>
 
           <div className="flex items-center gap-2 bg-zinc-800 px-3 py-1.5 rounded-full w-64">
             <Search size={16} className="text-zinc-400" />

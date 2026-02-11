@@ -1,5 +1,6 @@
 import { bannerHome } from '@/assets/images'
 import ButtonDefault from '../../components/Button/buttonDefault'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
@@ -23,9 +24,9 @@ export default function Home() {
               comunidade com os melhores experts.
             </p>
 
-            <a href="/register">
-              <ButtonDefault title="Começar agora" className=" cursor-pointer mt-8 px-6 py-3 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
-            </a>
+            <Link to="/register">
+              <ButtonDefault type="submit" title="Começar agora" className=" cursor-pointer mt-8 px-6 py-3 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
+            </Link>
           </div>
 
           {/* Imagem */}
