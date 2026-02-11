@@ -1,9 +1,9 @@
 import { bannerHome } from '@/assets/images'
-import ButtonDefault from '../components/button/buttonDefault'
+import ButtonDefault from '../../components/Button/buttonDefault'
 
 export default function Home() {
   return (
-    <section className="banner-home w-full bg-gradient-to-br from-[#1b1530] to-[#120d1f]">
+    <section className="banner-home w-full bg-linear-to-br from-[#1b1530] to-[#120d1f]">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-12 items-center min-h-[calc(100vh-47px)] gap-8">
 

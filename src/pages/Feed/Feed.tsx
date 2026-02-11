@@ -1,12 +1,12 @@
 
-import Feed from '@/components/feedCard/Feed'
-import Ranking from '@/components/ranking/ranking'
+import Feed from '@/components/FeedCard/Feed'
+import Ranking from '@/components/Ranking'
 
 export default function FeedPage() {
   return (
     <>
 
-      <main className="w-full min-h-screen bg-gradient-to-br from-[#1b1530] to-[#120d1f]">
+      <main className="w-full min-h-screen bg-linear-to-br from-[#1b1530] to-[#120d1f]">
         <div className="container py-8">
           <div className="grid grid-cols-12 gap-8">
             

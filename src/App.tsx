@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AuthLayout from './layouts/AuthLayout'
 import AppLayout from './layouts/AppLayout'
 
-import Login from './pages/Login'
-import Register from './pages/Register'
-import Home from './pages'
-import FeedPage from './pages/Feed'
+import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
+import Home from './pages/Home/Home'
+import FeedPage from './pages/Feed/Feed'
 
 function App() {
   return (

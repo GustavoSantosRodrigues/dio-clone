@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { api } from '@/services/api'
-import ButtonDefault from '../components/button/buttonDefault'
+import ButtonDefault from '../../components/Button/buttonDefault.js'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -13,13 +13,18 @@ const schema = yup.object().shape({
     password: yup.string().min(6, 'Senha deve ter no mínimo 6 caracteres').required('Senha é obrigatória'),
 }).required();
 
+interface LoginProps {
+    email: string;
+    password: string;
+}
+
 export default function Login() {
     const navigate = useNavigate()
     const {
         control,
         handleSubmit,
         formState: { errors, isValid },
-    } = useForm({
+    } = useForm<LoginProps>({
         resolver: yupResolver(schema),
         mode: 'all',
         defaultValues: {
@@ -30,15 +35,15 @@ export default function Login() {
 
     // console.log(isValid, errors)
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: LoginProps) => {
         try {
             const response = await api.get(`/users?email=${data.email}&password=${data.password}`)
             // console.log('retorno api', response.data)
-            if(response.data.length === 1) {
+            if (response.data.length === 1) {
                 console.log('Usuário encontrado')
                 navigate('/feed')
             } else {
-                alert('Usuário não encontrado, verifique seu email e senha') 
+                alert('Usuário não encontrado, verifique seu email e senha')
             }
         } catch (error) {
             alert('Erro ao fazer login')
@@ -48,7 +53,7 @@ export default function Login() {
     return (
         <>
             {/* <Header /> */}
-            <section className="w-full min-h-[calc(100vh-47px)] bg-gradient-to-br from-[#1b1530] to-[#120d1f]">
+            <section className="w-full min-h-[calc(100vh-47px)] bg-linear-to-br from-[#1b1530] to-[#120d1f]">
                 <div className="container h-full">
                     <div className="grid grid-cols-12 items-center gap-10 min-h-[calc(100vh-47px)]">
 
@@ -83,10 +88,8 @@ export default function Login() {
                                                 value={value}
                                                 onChange={onChange}
                                                 type="email"
-                                                error={errors.email}
-                                                isValid={isValid}
                                                 placeholder="E-mail"
-                                                className="bg-transparent outline-none text-sm w-full"
+                                                className={`bg-transparent outline-none text-sm w-full ${errors.email ? 'border-red-500' : ''}`}
                                             />
                                         )}
                                     />
@@ -106,9 +109,7 @@ export default function Login() {
                                                     onChange={onChange}
                                                     type="password"
                                                     placeholder="Password"
-                                                    error={errors?.password}
-                                                    isValid={isValid}
-                                                    className="bg-transparent outline-none text-sm w-full"
+                                                    className={`bg-transparent outline-none text-sm w-full ${errors.password ? 'border-red-500' : ''}`}
                                                 />
                                             )}
                                         />
@@ -116,7 +117,12 @@ export default function Login() {
                                     {errors?.password && <span className="error-message">{errors?.password.message}</span>}
 
                                     {/* Botão */}
-                                    <ButtonDefault type="submit" title="Entrar" className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
+                                    <ButtonDefault
+                                        type="submit"
+                                        title="Entrar"
+                                        onClick={() => { }}
+                                        className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition"
+                                    />
 
                                     {/* Links */}
                                     <div className="flex justify-between text-sm my-3">

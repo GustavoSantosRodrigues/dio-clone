@@ -1,5 +1,5 @@
 import { email, password, user } from '@/assets/images'
-import ButtonDefault from '../components/button/buttonDefault'
+import ButtonDefault from '../../components/Button/buttonDefault'
 import * as yup from 'yup'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -10,7 +10,10 @@ const schema = yup.object().shape({
     name: yup.string().required('Nome é obrigatório'),
     email: yup.string().email('Email inválido').required('Email é obrigatório'),
     password: yup.string().min(6, 'Senha deve ter no mínimo 6 caracteres').required('Senha é obrigatória'),
-}).required();
+});
+
+
+type FormData = yup.InferType<typeof schema>
 
 export default function Register() {
     const navigate = useNavigate()
@@ -18,8 +21,8 @@ export default function Register() {
     const {
         control,
         handleSubmit,
-        formState: { errors, isValid },
-    } = useForm({
+        formState: { errors },
+    } = useForm<FormData>({
         resolver: yupResolver(schema),
         mode: 'all',
         defaultValues: {
@@ -29,9 +32,15 @@ export default function Register() {
         },
     })
 
-    const onSubmit = async (data) => {
+
+    const onSubmit = async (data: FormData) => {
         try {
-          const response = await api.get(`/users?email=${data.email}&password=${data.password}`)
+            const response = await api.get('/users', {
+                params: {
+                    email: data.email,
+                    password: data.password,
+                },
+            })
 
             if (response.data.length === 1) {
                 navigate('/login')
@@ -39,7 +48,7 @@ export default function Register() {
             } else {
                 alert('Usuário não cadastrado')
             }
-        } catch (error) {
+        } catch (error: unknown) {
             alert('Erro ao criar usuário')
         }
     }
@@ -134,7 +143,7 @@ export default function Register() {
                                     </div>
                                     {errors.password && <p className="text-red-500 text-xs my-1">{errors.password.message}</p>}
 
-                                    <ButtonDefault type="submit"  title="Criar minha conta" className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
+                                    <ButtonDefault type="submit" title="Criar minha conta" className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
 
                                     {/* Termos */}
                                     <p className="text-xs text-zinc-300 mt-4 leading-relaxed">

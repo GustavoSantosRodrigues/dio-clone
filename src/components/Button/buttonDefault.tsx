@@ -1,9 +1,16 @@
+interface ButtonDefaultProps {
+  title: string;
+  type?: 'button' | 'submit' | 'reset';
+  onClick?: () => void;
+  className?: string;
+}
+
 export default function ButtonDefault({
   title,
   type = 'button',
   onClick,
   className = '',
-}) {
+}: ButtonDefaultProps) {
   return (
     <button
       type={type}
