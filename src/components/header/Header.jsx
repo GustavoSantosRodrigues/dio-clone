@@ -20,15 +20,9 @@ export default function Header() {
                         Home
                     </a>
 
-                    {/* <a href="/login">
+                    <a href="/login">
                         <button className="px-4 py-2 rounded-full bg-zinc-700 hover:bg-zinc-600 cursor-pointer">
                             Entrar
-                        </button>
-                    </a> */}
-
-                    <a href="/cadastro">
-                        <button className="px-4 py-2 rounded-full bg-zinc-600 hover:bg-zinc-500 cursor-pointer">
-                            Cadastrar
                         </button>
                     </a>
                 </nav>

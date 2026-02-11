@@ -4,6 +4,8 @@ import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { api } from '@/services/api'
+import ButtonDefault from '../components/button/buttonDefault'
+
 import { useNavigate } from 'react-router-dom'
 
 const schema = yup.object().shape({
@@ -34,7 +36,7 @@ export default function Login() {
             // console.log('retorno api', response.data)
             if(response.data.length === 1) {
                 console.log('Usuário encontrado')
-                navigate('/home')
+                navigate('/feed')
             } else {
                 alert('Usuário não encontrado, verifique seu email e senha') 
             }
@@ -82,6 +84,7 @@ export default function Login() {
                                                 onChange={onChange}
                                                 type="email"
                                                 error={errors.email}
+                                                isValid={isValid}
                                                 placeholder="E-mail"
                                                 className="bg-transparent outline-none text-sm w-full"
                                             />
@@ -104,6 +107,7 @@ export default function Login() {
                                                     type="password"
                                                     placeholder="Password"
                                                     error={errors?.password}
+                                                    isValid={isValid}
                                                     className="bg-transparent outline-none text-sm w-full"
                                                 />
                                             )}
@@ -112,9 +116,7 @@ export default function Login() {
                                     {errors?.password && <span className="error-message">{errors?.password.message}</span>}
 
                                     {/* Botão */}
-                                    <button type="submit" className="disabled:opacity-50  cursor-pointer w-full py-3 rounded-full bg-pink-600 hover:bg-pink-700 transition font-semibold mb-6">
-                                        Entrar
-                                    </button>
+                                    <ButtonDefault type="submit" title="Entrar" className="cursor-pointer w-full h-10 rounded-full bg-pink-600 hover:bg-pink-500 transition" />
 
                                     {/* Links */}
                                     <div className="flex justify-between text-sm">
