@@ -1,15 +1,29 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './components/header/Header'
+import AuthLayout from './layouts/AuthLayout'
+import AppLayout from './layouts/AppLayout'
+
 import Login from './pages/Login'
 import Register from './pages/Register'
+import Home from './pages'
+import FeedPage from './pages/Feed'
 
 function App() {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+
+        {/* Área pública */}
+        <Route element={<AuthLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+
+        {/* Área logada */}
+        <Route element={<AppLayout />}>
+          <Route path="/feed" element={<FeedPage />} />
+        </Route>
+
       </Routes>
     </BrowserRouter>
   )
