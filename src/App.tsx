@@ -6,25 +6,28 @@ import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import Home from './pages/Home/Home'
 import FeedPage from './pages/Feed/Feed'
+import { AuthProvider } from './context/auth'
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+      <AuthProvider>
+        <Routes>
 
-        {/* Área pública */}
-        <Route element={<AuthLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Route>
+          {/* Área pública */}
+          <Route element={<AuthLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-        {/* Área logada */}
-        <Route element={<AppLayout />}>
-          <Route path="/feed" element={<FeedPage />} />
-        </Route>
+          {/* Área logada */}
+          <Route element={<AppLayout />}>
+            <Route path="/feed" element={<FeedPage />} />
+          </Route>
 
-      </Routes>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   )
 }

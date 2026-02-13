@@ -3,11 +3,10 @@ import { email, password } from '@/assets/images'
 import { useForm, Controller } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { api } from '@/services/api'
 import ButtonDefault from '../../components/Button/buttonDefault'
-
 import { Link, useNavigate } from 'react-router-dom'
-
+import { useAuth } from '@/hooks/userAuth'
+    
 const schema = yup.object({
     email: yup.string().email('Email inválido').required('Email é obrigatório'),
     password: yup.string().min(6, 'Senha deve ter no mínimo 6 caracteres').required('Senha é obrigatória'),
@@ -15,15 +14,9 @@ const schema = yup.object({
 
 type LoginProps = yup.InferType<typeof schema>
 
-interface user {
-    id: number
-    name: string
-    email: string
-    password: string
-}
-
 export default function Login() {
-    const navigate = useNavigate()
+
+    const { signIn } = useAuth()
     const {
         control,
         handleSubmit,
@@ -40,23 +33,8 @@ export default function Login() {
     // console.log(isValid, errors)
 
     const onSubmit = async (data: LoginProps) => {
-        try {
-            const response = await api.get<user[]>(`/users`, {
-                params: {
-                    email: data.email,
-                    password: data.password
-                }
-            })
-            // console.log('retorno api', response.data)
-            if (response.data.length === 1) {
-                console.log('Usuário encontrado')
-                navigate('/feed')
-            } else {
-                alert('Usuário não encontrado, verifique seu email e senha')
-            }
-        } catch (error: unknown) {
-            alert('Erro ao fazer login')
-        }
+        console.log('enviando dados para o backend', data)
+        signIn({ email: data.email, password: data.password })
     }
 
     return (

@@ -1,90 +1,81 @@
-# DIO Clone – React + Vite + TypeScript
+# DIO Clone – React + Vite
 
-Projeto desenvolvido com **React + Vite + TypeScript**, recriando as telas de **Cadastro, Login e Feed**, aplicando boas práticas de componentização, tipagem, responsividade e consumo de API.
-
----
+Projeto desenvolvido com **React + Vite**, recriando as telas de **Cadastro e Login** inspiradas no layout da DIO, utilizando boas práticas de componentização, responsividade e consumo de API.
 
 ## 🚀 Tecnologias Utilizadas
 
-- **React**
-- **TypeScript**
-- **Vite**
-- **Tailwind CSS**
-- **Axios**
-- **React Hook Form**
-- **Yup**
-- **React Router DOM**
-- **JSON Server**
-- **Lucide React**
+- **React** – Biblioteca principal para construção da interface  
+- **Vite** – Bundler rápido para desenvolvimento  
+- **Tailwind CSS** – Estilização utilitária e responsiva  
+- **Axios** – Consumo de API  
+- **React Hook Form** – Gerenciamento de formulários  
+- **Yup** – Validação de formulários  
+- **React Router DOM** – Controle de rotas  
+- **JSON Server** – API fake para simular autenticação e cadastro  
+- **Lucide React** – Biblioteca de ícones  
 
 ---
 
 ## 📐 Layout e Estrutura Visual
 
 - Layout responsivo baseado em **grid de 12 colunas**
-- Componentes reutilizáveis e tipados
-- Separação de layouts por contexto de página
-- Estilização 100% com **Tailwind CSS**
-- Código totalmente tipado com **TypeScript**
+- Container customizado seguindo cálculo de layout (**pixel perfect**)
+- Header reutilizável e padronizado
+- Componentes reutilizáveis para manter consistência visual
+- Estilização 100% feita com **Tailwind CSS**
+
+---
+
+## 🧭 Layout de Rotas e Navegação
+
+- Navegação controlada com **React Router DOM**
+- Estrutura de layout separada por contexto da página
+- Páginas públicas (**Home, Login e Cadastro**) utilizam um **header padrão**
+- Página de **Feed** utiliza um **header específico com busca**
+- Separação de layouts evita conflitos visuais e melhora organização
+- Estrutura preparada para crescimento do projeto
 
 ---
 
 ## 🔐 Autenticação (Simulada)
 
-- Integração com **JSON Server**
-- Requisições via **Axios**
-- Formulários controlados com **React Hook Form**
-- Validação com **Yup**
-- Tipagem completa de dados de usuário e respostas da API
+- Login e cadastro integrados com **API fake**
+- Validação de formulários com **Yup**
+- Gerenciamento de estado e erros com **React Hook Form**
+- Requisições HTTP feitas com **Axios**
+- Dados simulados utilizando **JSON Server**
 
 ---
 
-## 🖼️ Imagens Tipadas
-
-As imagens foram centralizadas e exportadas de forma tipada:
-
-```
-src/assets/images/index.ts
-```
-
-Exportação centralizada para facilitar importação:
-
-```ts
-import { logo } from "@/assets/images"
-```
-
-Garantindo melhor organização e controle com TypeScript.
-
----
-
-## 🧱 Estrutura de Pastas (Atualizada)
+## 🧱 Estrutura de Pastas
 
 ```bash
 src/
 ├── assets/
-│   └── images/
-│       └── index.ts
+│   └── images/index.jsx
 │
 ├── components/
-│   ├── HeaderAuth.tsx
-│   ├── HeaderSearch.tsx
-│   └── Button.tsx
+│   ├── headerAuth/
+│   ├── headerSearch/
+│   └── button/
+│   └── feedCard/
+│   └── ranking/
 │
 ├── layouts/
-│   ├── AppLayout.tsx
-│   └── SearchLayout.tsx
+│   ├── /AppLayout.jsx
+│   └── /SearchLayout.jsx
 │
 ├── pages/
-│   ├── Home.tsx
-│   ├── Login.tsx
-│   ├── Register.tsx
-│   └── Feed.tsx
+│   ├── index/
+│   ├── Login/
+│   ├── Register/
+│   └── Feed/
 │
 ├── services/
-│   └── api.ts
+│   └── api.js
 │
-├── App.tsx
-├── main.tsx
+├── App.jsx
+├── main.jsx
 └── index.css
 ```
 
